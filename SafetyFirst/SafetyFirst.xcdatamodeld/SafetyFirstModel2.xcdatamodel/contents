@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14E46" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="OneBudgetSheet" representedClassName="SafetyFirst.OneBudgetSheet" syncable="YES">
+        <attribute name="budgetCreatedOn" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="budgetLastUpdate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="budgetTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="notes" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="OneNote" inverseName="bugetSheetIn" inverseEntity="OneNote" syncable="YES"/>
+        <relationship name="thisProfile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="OneProfile" inverseName="bugetSheetIn" inverseEntity="OneProfile" syncable="YES"/>
+    </entity>
+    <entity name="OneNote" representedClassName="SafetyFirst.OneNote" syncable="YES">
+        <attribute name="noteContent" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="noteTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="bugetSheetIn" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="OneBudgetSheet" inverseName="notes" inverseEntity="OneBudgetSheet" syncable="YES"/>
+        <relationship name="profileIn" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="OneProfile" inverseName="note" inverseEntity="OneProfile" syncable="YES"/>
+        <relationship name="purposeIn" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="OnePurpose" inverseName="purposeNote" inverseEntity="OnePurpose" syncable="YES"/>
+    </entity>
+    <entity name="OneProfile" representedClassName="SafetyFirst.OneProfile" syncable="YES">
+        <attribute name="profCreatedOn" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="profileTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="profLastUpdate" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="bugetSheetIn" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OneBudgetSheet" inverseName="thisProfile" inverseEntity="OneBudgetSheet" syncable="YES"/>
+        <relationship name="note" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="OneNote" inverseName="profileIn" inverseEntity="OneNote" syncable="YES"/>
+        <relationship name="purposes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OnePurpose" inverseName="profileIn" inverseEntity="OnePurpose" syncable="YES"/>
+    </entity>
+    <entity name="OnePurpose" representedClassName="SafetyFirst.OnePurpose" syncable="YES">
+        <attribute name="purposeAmount" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="purposeCreatedOn" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="purposeLastUpdate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="purposeTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="profileIn" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="OneProfile" inverseName="purposes" inverseEntity="OneProfile" syncable="YES"/>
+        <relationship name="purposeNote" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="OneNote" inverseName="purposeIn" inverseEntity="OneNote" syncable="YES"/>
+    </entity>
+    <entity name="UserLogin" representedClassName="SafetyFirst.UserLogin" syncable="YES">
+        <attribute name="userPass" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="OneBudgetSheet" positionX="216" positionY="-72" width="128" height="118"/>
+        <element name="OneNote" positionX="-101" positionY="-18" width="128" height="118"/>
+        <element name="OneProfile" positionX="475" positionY="-34" width="128" height="133"/>
+        <element name="OnePurpose" positionX="225" positionY="89" width="128" height="133"/>
+        <element name="UserLogin" positionX="-171" positionY="-159" width="128" height="60"/>
+    </elements>
+</model>
